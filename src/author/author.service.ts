@@ -20,8 +20,4 @@ export class AuthorService {
   findOne(id: number) {
     return this.prisma.author.findUnique({ where: { id } })
   }
-
-  findAuthorByPostId(id: number) {
-    return this.prisma.author.findUnique({ where: { id } })
-  }
 }
