@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 
-import { AuthorModule } from './author/author.module'
+import { AuthorModule } from '../../../modules/author/author.module'
 import { join } from 'path'
-import { PostModule } from './post/post.module'
+import { PostModule } from '../../../modules/post/post.module'
 
 @Module({
   imports: [

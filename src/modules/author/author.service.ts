@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { Author } from '@prisma/client'
-import { PrismaService } from '../prisma.service'
+
+import { PrismaService } from '../../shared/providers/prisma.service'
 import { CreateAuthorInput } from './dto/create-author.input'
 
 @Injectable()
