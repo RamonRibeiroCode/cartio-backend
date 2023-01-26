@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { PrismaService } from '../prisma.service'
-import { PostService } from '../post/post.service'
-import { AuthorResolver } from './author.resolver'
-import { AuthorService } from './author.service'
+import { PrismaService } from '../../prisma.service'
+import { PostService } from '../../post/post.service'
+import { AuthorResolver } from '../author.resolver'
+import { AuthorService } from '../author.service'
 
 describe('AuthorResolver', () => {
   let resolver: AuthorResolver
