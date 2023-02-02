@@ -34,7 +34,7 @@ export class AuthorResolver {
   }
 
   @Query(() => Author, { name: 'author' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findById(@Args('id', { type: () => Int }) id: number) {
     return this.authorService.findOne(id)
   }
 

@@ -1,24 +1,22 @@
 import { Injectable } from '@nestjs/common'
 import { Author } from '@prisma/client'
 
-import { PrismaService } from '../../shared/providers/prisma.service'
 import { CreateAuthorInput } from './dto/create-author.input'
+import { AuthorRepository } from './repositories/author.repository'
 
 @Injectable()
 export class AuthorService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private authorRepository: AuthorRepository) {}
 
   create(createAuthorInput: CreateAuthorInput) {
-    return this.prisma.author.create({
-      data: createAuthorInput,
-    })
+    return this.authorRepository.create(createAuthorInput)
   }
 
   findAll(): Promise<Author[]> {
-    return this.prisma.author.findMany()
+    return this.authorRepository.findAll()
   }
 
   findOne(id: number) {
-    return this.prisma.author.findUnique({ where: { id } })
+    return this.authorRepository.findById(id)
   }
 }
