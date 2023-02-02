@@ -1,26 +1,24 @@
 import { Injectable } from '@nestjs/common'
-import { PrismaService } from '../../shared/database/prisma.service'
 import { CreatePostInput } from './dto/create-post.input'
+import { PostRepository } from './repositories/post.repository'
 
 @Injectable()
 export class PostService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private postRepository: PostRepository) {}
 
   create(createPostInput: CreatePostInput) {
-    return this.prisma.post.create({
-      data: createPostInput,
-    })
+    return this.postRepository.create(createPostInput)
   }
 
   findAll() {
-    return this.prisma.post.findMany()
+    return this.postRepository.findAll()
   }
 
   findOne(id: number) {
-    return this.prisma.post.findUnique({ where: { id } })
+    return this.postRepository.findById(id)
   }
 
   findPostsByAuthorId(id: number) {
-    return this.prisma.post.findMany({ where: { authorId: id } })
+    return this.postRepository.findPostsByAuthorId(id)
   }
 }

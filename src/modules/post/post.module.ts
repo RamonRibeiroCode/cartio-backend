@@ -5,6 +5,8 @@ import { PrismaService } from '../../shared/database/prisma.service'
 import { AuthorService } from '../author/author.service'
 import { AuthorRepository } from '../author/repositories/author.repository'
 import { PrismaAuthorRepository } from '../author/repositories/prisma/prisma-author.repository'
+import { PostRepository } from './repositories/post.repository'
+import { PrismaPostRepository } from './repositories/prisma/prisma-post.repository'
 
 @Module({
   providers: [
@@ -15,6 +17,10 @@ import { PrismaAuthorRepository } from '../author/repositories/prisma/prisma-aut
     {
       provide: AuthorRepository,
       useClass: PrismaAuthorRepository,
+    },
+    {
+      provide: PostRepository,
+      useClass: PrismaPostRepository,
     },
   ],
 })
