@@ -37,8 +37,8 @@ export class AuthorResolver {
     return this.authorService.findOne(id)
   }
 
-  @ResolveField(() => [Post])
-  async posts(@Parent() author: Author): Promise<Post[]> {
+  @ResolveField(() => [Post], { name: 'posts' })
+  async findPostsByAuthor(@Parent() author: Author): Promise<Post[]> {
     const { id } = author
 
     return this.postService.findPostsByAuthorId(id)

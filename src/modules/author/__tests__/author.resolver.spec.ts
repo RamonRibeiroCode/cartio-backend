@@ -80,7 +80,7 @@ describe('AuthorResolver', () => {
 
     const author = await resolver.findById(id)
 
-    const [post] = await resolver.posts(author)
+    const [post] = await resolver.findPostsByAuthor(author)
 
     expect(post).toBeInstanceOf(Post)
   })

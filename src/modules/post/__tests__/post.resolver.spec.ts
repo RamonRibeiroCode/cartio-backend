@@ -84,7 +84,7 @@ describe('PostResolver', () => {
 
     const post = await resolver.createPost(createPostInputWithAuthor)
 
-    const author = await resolver.author(post)
+    const author = await resolver.findAuthorByPost(post)
 
     expect(author).toBeInstanceOf(Author)
   })
