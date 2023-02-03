@@ -9,10 +9,12 @@ export class InMemoryPostRepository implements PostRepository {
   posts: Post[] = []
 
   create(createPostInput: CreatePostInput): Promise<Post> {
-    const newPost = {
+    const newPost = new Post()
+
+    Object.assign(newPost, {
       id: randomUUID(),
       ...createPostInput,
-    }
+    })
 
     this.posts.push(newPost)
 
@@ -28,8 +30,6 @@ export class InMemoryPostRepository implements PostRepository {
   }
 
   findPostsByAuthorId(id: string): Promise<Post[]> {
-    console.log(id)
-
-    throw new Error('Method not implemented.')
+    return Promise.resolve(this.posts.filter((post) => post.authorId === id))
   }
 }

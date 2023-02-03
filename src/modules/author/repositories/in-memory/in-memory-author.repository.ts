@@ -9,10 +9,12 @@ export class InMemoryAuthorRepository implements AuthorRepository {
   authors: Author[] = []
 
   create(createAuthorInput: CreateAuthorInput): Promise<Author> {
-    const newAuthor = {
+    const newAuthor = new Author()
+
+    Object.assign(newAuthor, {
       id: randomUUID(),
       ...createAuthorInput,
-    }
+    })
 
     this.authors.push(newAuthor)
 
