@@ -12,5 +12,5 @@ export class CreatePostInput {
   published: boolean
 
   @Field()
-  authorId: number
+  authorId: string
 }

@@ -14,11 +14,11 @@ export class PostService {
     return this.postRepository.findAll()
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.postRepository.findById(id)
   }
 
-  findPostsByAuthorId(id: number) {
+  findPostsByAuthorId(id: string) {
     return this.postRepository.findPostsByAuthorId(id)
   }
 }

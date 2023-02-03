@@ -5,7 +5,6 @@ import {
   Args,
   ResolveField,
   Parent,
-  Int,
 } from '@nestjs/graphql'
 
 import { AuthorService } from './author.service'
@@ -34,7 +33,7 @@ export class AuthorResolver {
   }
 
   @Query(() => Author, { name: 'author' })
-  findById(@Args('id', { type: () => Int }) id: number) {
+  findById(@Args('id', { type: () => String }) id: string) {
     return this.authorService.findOne(id)
   }
 

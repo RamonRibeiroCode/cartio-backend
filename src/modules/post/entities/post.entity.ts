@@ -3,7 +3,7 @@ import { ObjectType, Field, ID } from '@nestjs/graphql'
 @ObjectType()
 export class Post {
   @Field(() => ID)
-  id: number
+  id: string
 
   @Field()
   title: string
@@ -15,5 +15,5 @@ export class Post {
   published: boolean
 
   @Field()
-  authorId: number
+  authorId: string
 }

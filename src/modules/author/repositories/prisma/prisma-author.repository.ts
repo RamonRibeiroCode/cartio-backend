@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { PrismaService } from 'src/shared/database/prisma.service'
+import { PrismaService } from '../../../../shared/database/prisma.service'
 import { CreateAuthorInput } from '../../dto/create-author.input'
 import { Author } from '../../entities/author.entity'
 import { AuthorRepository } from '../author.repository'
@@ -18,7 +18,7 @@ export class PrismaAuthorRepository implements AuthorRepository {
     return this.prisma.author.findMany()
   }
 
-  findById(id: number) {
+  findById(id: string) {
     return this.prisma.author.findUnique({ where: { id } })
   }
 }

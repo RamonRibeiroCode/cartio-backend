@@ -15,7 +15,7 @@ input CreateAuthorInput {
 }
 
 input CreatePostInput {
-  authorId: Float!
+  authorId: String!
   content: String!
   published: Boolean!
   title: String!
@@ -28,7 +28,7 @@ type Mutation {
 
 type Post {
   author: Author!
-  authorId: Float!
+  authorId: String!
   content: String!
   id: ID!
   published: Boolean!
@@ -36,8 +36,8 @@ type Post {
 }
 
 type Query {
-  author(id: Int!): Author!
+  author(id: String!): Author!
   authors: [Author!]!
-  post(id: Int!): Post!
+  post(id: String!): Post!
   posts: [Post!]!
 }

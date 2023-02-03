@@ -16,7 +16,7 @@ export class AuthorService {
     return this.authorRepository.findAll()
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.authorRepository.findById(id)
   }
 }
