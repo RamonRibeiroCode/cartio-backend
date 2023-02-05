@@ -2,42 +2,33 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Author {
-  email: String!
-  id: ID!
-  name: String
-  posts: [Post!]!
-}
-
-input CreateAuthorInput {
+input CreateUserInput {
   email: String!
   name: String!
-}
-
-input CreatePostInput {
-  authorId: String!
-  content: String!
-  published: Boolean!
-  title: String!
+  password: String!
 }
 
 type Mutation {
-  createAuthor(createAuthorInput: CreateAuthorInput!): Author!
-  createPost(createPostInput: CreatePostInput!): Post!
-}
-
-type Post {
-  author: Author!
-  authorId: String!
-  content: String!
-  id: ID!
-  published: Boolean!
-  title: String!
+  createUser(createUserInput: CreateUserInput!): UserWithoutPassword!
+  signin(signinInput: SigninInput!): SigninResponse!
 }
 
 type Query {
-  author(id: String!): Author!
-  authors: [Author!]!
-  post(id: String!): Post!
-  posts: [Post!]!
+  profile: UserWithoutPassword!
+  sayHello: String!
+}
+
+input SigninInput {
+  email: String!
+  password: String!
+}
+
+type SigninResponse {
+  email: String!
+  token: String!
+}
+
+type UserWithoutPassword {
+  email: String!
+  name: String!
 }
