@@ -37,6 +37,7 @@ export class AuthService {
 
     const tokenReturn: SigninResponse = {
       token,
+      name: user.name,
       email: user.email,
     }
 

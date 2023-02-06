@@ -6,5 +6,8 @@ export class SigninResponse {
   email: string
 
   @Field()
+  name: string
+
+  @Field()
   token: string
 }

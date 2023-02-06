@@ -10,7 +10,7 @@ input CreateUserInput {
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): UserWithoutPassword!
-  signin(signinInput: SigninInput!): SigninResponse!
+  signin(email: String!, password: String!): SigninResponse!
 }
 
 type Query {
@@ -18,13 +18,9 @@ type Query {
   sayHello: String!
 }
 
-input SigninInput {
-  email: String!
-  password: String!
-}
-
 type SigninResponse {
   email: String!
+  name: String!
   token: String!
 }
 
