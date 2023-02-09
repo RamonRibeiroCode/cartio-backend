@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { randomUUID } from 'crypto'
 import { CreateUserInput } from '../../dto/inputs/create-user.input'
+import { UpdateUserInput } from '../../dto/inputs/update-user.input'
 import { User } from '../../entities/user.entity'
 import { UserRepository } from '../user.repository'
 
@@ -21,5 +22,9 @@ export class InMemoryUserRepository implements UserRepository {
 
   findByEmail(email: string) {
     return Promise.resolve(this.users.find((user) => user.email === email))
+  }
+
+  update(id: string, updateUserInput: UpdateUserInput): Promise<User> {
+    throw new Error('Method not implemented.')
   }
 }

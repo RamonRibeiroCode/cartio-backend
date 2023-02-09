@@ -11,6 +11,7 @@ input CreateUserInput {
 type Mutation {
   createUser(createUserInput: CreateUserInput!): UserWithoutPassword!
   signin(email: String!, password: String!): SigninResponse!
+  updateUser(updateUserInput: UpdateUserInput!): UserWithoutPassword!
 }
 
 type Query {
@@ -24,7 +25,19 @@ type SigninResponse {
   token: String!
 }
 
+input UpdateUserInput {
+  address: String
+  city: String
+  name: String!
+  phone: String
+  state: String
+}
+
 type UserWithoutPassword {
+  address: String
+  city: String
   email: String!
   name: String!
+  phone: String
+  state: String
 }

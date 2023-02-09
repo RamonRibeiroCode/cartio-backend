@@ -3,9 +3,12 @@ import { UseGuards } from '@nestjs/common'
 
 import { UserService } from './user.service'
 import { User } from './entities/user.entity'
-import { CreateUserInput } from './dto/inputs/create-user.input'
-import { UserWithoutPassword } from './dto/responses/user-without-password.respose'
 import { JWTGuard } from '../auth/jwt.guard'
+
+import { CreateUserInput } from './dto/inputs/create-user.input'
+import { UserWithoutPassword } from './dto/responses/user-without-password.response'
+import { UpdateUserInput } from './dto/inputs/update-user.input'
+
 import { USER_CONTEXT } from '../../constants/contexts'
 
 interface UserContext {
@@ -26,5 +29,14 @@ export class UserResolver {
   @UseGuards(JWTGuard)
   profile(@Context(USER_CONTEXT) user: UserContext) {
     return this.userService.findByEmail(user.email)
+  }
+
+  @Mutation(() => UserWithoutPassword, { name: 'updateUser' })
+  @UseGuards(JWTGuard)
+  updateUser(
+    @Args('updateUserInput') updateUserInput: UpdateUserInput,
+    @Context(USER_CONTEXT) user: UserContext,
+  ) {
+    return this.userService.update(user.id, updateUserInput)
   }
 }
