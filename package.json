@@ -28,11 +28,14 @@
     "@nestjs/platform-express": "^9.0.0",
     "@prisma/client": "^4.9.0",
     "apollo-server-express": "^3.11.1",
+    "aws-sdk": "^2.1311.0",
     "bcrypt": "^5.1.0",
     "graphql": "^16.6.0",
+    "graphql-upload": "^9.0.0",
     "jsonwebtoken": "^9.0.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
@@ -40,10 +43,12 @@
     "@nestjs/testing": "^9.0.0",
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
+    "@types/graphql-upload": "^8.0.3",
     "@types/jest": "29.2.4",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "18.11.18",
     "@types/supertest": "^2.0.11",
+    "@types/uuid": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^8.0.1",

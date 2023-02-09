@@ -16,5 +16,6 @@ model User {
   address String?
   state String?
   city String?
+  imageUrl String?
 }
 

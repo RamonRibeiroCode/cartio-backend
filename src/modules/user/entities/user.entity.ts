@@ -13,4 +13,19 @@ export class User {
 
   @Field()
   password: string
+
+  @Field({ nullable: true })
+  phone?: string
+
+  @Field({ nullable: true })
+  address?: string
+
+  @Field({ nullable: true })
+  state?: string
+
+  @Field({ nullable: true })
+  city?: string
+
+  @Field({ nullable: true })
+  imageUrl?: string
 }

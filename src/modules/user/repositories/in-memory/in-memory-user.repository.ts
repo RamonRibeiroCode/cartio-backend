@@ -25,6 +25,20 @@ export class InMemoryUserRepository implements UserRepository {
   }
 
   update(id: string, updateUserInput: UpdateUserInput): Promise<User> {
-    throw new Error('Method not implemented.')
+    const index = this.users.findIndex((user) => user.id === id)
+    const user = this.users[index]
+
+    this.users[index] = { ...user, ...updateUserInput }
+
+    return Promise.resolve(user)
+  }
+
+  updateProfilePicture(id: string, fileUrl: string): Promise<User> {
+    const index = this.users.findIndex((user) => user.id === id)
+    const user = this.users[index]
+
+    this.users[index] = { ...user, imageUrl: fileUrl }
+
+    return Promise.resolve(user)
   }
 }

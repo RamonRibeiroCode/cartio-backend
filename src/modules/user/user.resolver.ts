@@ -1,6 +1,8 @@
 import { Resolver, Mutation, Args, Context, Query } from '@nestjs/graphql'
 import { UseGuards } from '@nestjs/common'
 
+import { GraphQLUpload, FileUpload } from 'graphql-upload'
+
 import { UserService } from './user.service'
 import { User } from './entities/user.entity'
 import { JWTGuard } from '../auth/jwt.guard'
@@ -38,5 +40,14 @@ export class UserResolver {
     @Context(USER_CONTEXT) user: UserContext,
   ) {
     return this.userService.update(user.id, updateUserInput)
+  }
+
+  @Mutation(() => UserWithoutPassword, { name: 'updateProfilePicture' })
+  @UseGuards(JWTGuard)
+  async updateProfilePicture(
+    @Args({ name: 'file', type: () => GraphQLUpload }) file: FileUpload,
+    @Context(USER_CONTEXT) user: UserContext,
+  ) {
+    return this.userService.updateProfilePicture(user.id, file)
   }
 }

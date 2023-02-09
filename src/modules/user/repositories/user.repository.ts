@@ -8,4 +8,6 @@ export abstract class UserRepository {
   abstract findByEmail(id: string): Promise<User>
 
   abstract update(id: string, updateUserInput: UpdateUserInput): Promise<User>
+
+  abstract updateProfilePicture(id: string, fileUrl: string): Promise<User>
 }
