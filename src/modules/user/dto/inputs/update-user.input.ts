@@ -2,18 +2,21 @@ import { InputType, Field } from '@nestjs/graphql'
 
 @InputType()
 export class UpdateUserInput {
-  @Field()
-  name: string
+  @Field({ nullable: true })
+  name?: string
 
   @Field({ nullable: true })
-  phone: string
+  phone?: string
 
   @Field({ nullable: true })
-  address: string
+  address?: string
 
   @Field({ nullable: true })
-  state: string
+  state?: string
 
   @Field({ nullable: true })
-  city: string
+  city?: string
+
+  @Field({ nullable: true })
+  imageUrl?: string
 }

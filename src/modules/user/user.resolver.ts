@@ -50,4 +50,10 @@ export class UserResolver {
   ) {
     return this.userService.updateProfilePicture(user.id, file)
   }
+
+  @Mutation(() => UserWithoutPassword, { name: 'deleteProfilePicture' })
+  @UseGuards(JWTGuard)
+  async deleteProfilePicture(@Context(USER_CONTEXT) user: UserContext) {
+    return this.userService.deleteProfilePicture(user.id)
+  }
 }

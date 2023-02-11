@@ -17,7 +17,11 @@ export class PrismaUserRepository implements UserRepository {
     return this.prisma.user.findUnique({ where: { email } })
   }
 
-  async update(id: string, updateUserInput: UpdateUserInput) {
+  findById(id: string) {
+    return this.prisma.user.findUnique({ where: { id } })
+  }
+
+  update(id: string, updateUserInput: UpdateUserInput) {
     return this.prisma.user.update({ data: updateUserInput, where: { id } })
   }
 

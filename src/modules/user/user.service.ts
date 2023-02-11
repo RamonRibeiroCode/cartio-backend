@@ -35,6 +35,26 @@ export class UserService {
   async updateProfilePicture(id: string, file: FileUpload) {
     const fileUrl = await this.storageProvider.upload(file)
 
+    const { imageUrl } = await this.userRepository.findById(id)
+
+    if (imageUrl) {
+      const key = imageUrl.split('amazonaws.com/')[1]
+
+      this.storageProvider.delete(key)
+    }
+
     return this.userRepository.updateProfilePicture(id, fileUrl)
+  }
+
+  async deleteProfilePicture(id: string) {
+    const { imageUrl } = await this.userRepository.findById(id)
+
+    if (imageUrl) {
+      const key = imageUrl.split('amazonaws.com/')[1]
+
+      this.storageProvider.delete(key)
+    }
+
+    return this.userRepository.update(id, { imageUrl: null })
   }
 }

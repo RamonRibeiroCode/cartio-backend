@@ -10,6 +10,7 @@ input CreateUserInput {
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): UserWithoutPassword!
+  deleteProfilePicture: UserWithoutPassword!
   signin(email: String!, password: String!): SigninResponse!
   updateProfilePicture(file: Upload!): UserWithoutPassword!
   updateUser(updateUserInput: UpdateUserInput!): UserWithoutPassword!
@@ -29,7 +30,8 @@ type SigninResponse {
 input UpdateUserInput {
   address: String
   city: String
-  name: String!
+  imageUrl: String
+  name: String
   phone: String
   state: String
 }

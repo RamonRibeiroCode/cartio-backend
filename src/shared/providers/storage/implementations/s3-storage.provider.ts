@@ -39,4 +39,12 @@ export class S3StorageProvider implements StorageProvider {
 
     return result.Location
   }
+
+  async delete(key: string) {
+    await this.s3
+      .deleteObject({ Bucket: AWS_S3_BUCKET_NAME, Key: key })
+      .promise()
+
+    return true
+  }
 }
