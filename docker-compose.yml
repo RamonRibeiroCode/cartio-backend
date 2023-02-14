@@ -30,9 +30,9 @@ services:
 
   app:
     stdin_open: true
-    build:
-      context: .
-      dockerfile: Dockerfile
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile.dev
     container_name: cartio-app
     depends_on:
       - postgres
