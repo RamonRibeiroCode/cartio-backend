@@ -1,0 +1,4 @@
+node_modules
+.git
+.vscode
+pnpm-lock.yaml
