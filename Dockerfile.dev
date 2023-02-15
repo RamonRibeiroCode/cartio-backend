@@ -5,7 +5,7 @@ WORKDIR /apps/cartio
 COPY package*.json ./
 
 # generated prisma files
-# COPY prisma ./prisma/
+COPY prisma ./prisma/
 
 # COPY ENV variable
 COPY .env ./
