@@ -8,7 +8,7 @@ async function bootstrap() {
 
   app.use(graphqlUploadExpress({ maxFileSize: 3 * 1024 * 1024, maxFiles: 1 })) // 3 MB
 
-  await app.listen(5000)
+  await app.listen(process.env.PORT)
 }
 
 bootstrap()
