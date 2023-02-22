@@ -45,6 +45,22 @@ $ pnpm run start:dev
 $ pnpm run start:prod
 ```
 
+## Running the app with Docker
+
+```bash
+# development
+$ docker-compose -f docker-compose.dev.yml -f docker-compose.yml up
+
+# production mode
+$ docker-compose -f docker-compose.prod.yml -f docker-compose.yml up
+```
+
+## Database
+
+```bash
+$ npx prisma studio
+```
+
 ## Test
 
 ```bash
