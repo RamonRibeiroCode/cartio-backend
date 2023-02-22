@@ -6,6 +6,7 @@ import { UserModule } from '../../../modules/user/user.module'
 import { join } from 'path'
 import { AppResolver } from './app.resolver'
 import { AuthModule } from '../../../modules/auth/auth.module'
+import { ProductModule } from '../../../modules/product/product.module'
 
 @Module({
   imports: [
@@ -16,8 +17,9 @@ import { AuthModule } from '../../../modules/auth/auth.module'
       introspection: true,
       playground: true,
     }),
-    UserModule,
     AuthModule,
+    ProductModule,
+    UserModule,
   ],
   providers: [AppResolver],
 })
