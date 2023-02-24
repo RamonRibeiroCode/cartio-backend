@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { hash } from 'bcrypt'
-import { FileUpload } from 'graphql-upload'
+import { FileUpload } from 'graphql-upload-ts'
 import { StorageProvider } from '../../shared/providers/storage/storage.provider'
 
 import { CreateUserInput } from './dto/inputs/create-user.input'
@@ -33,6 +33,7 @@ export class UserService {
   }
 
   async updateProfilePicture(id: string, file: FileUpload) {
+
     const fileUrl = await this.storageProvider.upload(file)
 
     const { imageUrl } = await this.userRepository.findById(id)

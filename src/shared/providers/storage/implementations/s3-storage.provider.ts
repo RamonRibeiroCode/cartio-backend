@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import * as AWS from 'aws-sdk'
-import { FileUpload } from 'graphql-upload'
+import { FileUpload } from 'graphql-upload-ts'
 import { v4 as uuid } from 'uuid'
 import { slugify } from '../../../../helpers/file'
 import { StorageProvider } from '../storage.provider'

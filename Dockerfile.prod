@@ -13,13 +13,16 @@ COPY .env ./
 # COPY tsconfig.json file
 COPY tsconfig.json ./
 
+# INSTALL dependencies
+RUN npm install
+
+# GENERATE prisma cli dependencies
+RUN npx prisma generate
+
 # COPY
 COPY . .
 
-RUN npm install --legacy-peer-deps
-
-RUN npx prisma generate
-
+# CREATE build
 RUN npm run build
 
 # Run and expose the server on port 5000

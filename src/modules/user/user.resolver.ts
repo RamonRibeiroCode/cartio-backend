@@ -1,7 +1,7 @@
 import { Resolver, Mutation, Args, Context, Query } from '@nestjs/graphql'
 import { UseGuards } from '@nestjs/common'
 
-import { GraphQLUpload, FileUpload } from 'graphql-upload'
+import { GraphQLUpload, FileUpload } from 'graphql-upload-ts'
 
 import { UserService } from './user.service'
 import { User } from './entities/user.entity'

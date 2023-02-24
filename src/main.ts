@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core'
-import { graphqlUploadExpress } from 'graphql-upload'
+
+import { graphqlUploadExpress } from 'graphql-upload-ts'
 
 import { AppModule } from './shared/infra/http/app.module'
 
