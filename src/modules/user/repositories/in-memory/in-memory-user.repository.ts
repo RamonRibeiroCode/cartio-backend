@@ -37,11 +37,11 @@ export class InMemoryUserRepository implements UserRepository {
     return Promise.resolve(user)
   }
 
-  updateProfilePicture(id: string, fileUrl: string): Promise<User> {
+  updateProfilePicture(id: string, fileKey: string): Promise<User> {
     const index = this.users.findIndex((user) => user.id === id)
     const user = this.users[index]
 
-    this.users[index] = { ...user, imageUrl: fileUrl }
+    this.users[index] = { ...user, imageKey: fileKey }
 
     return Promise.resolve(user)
   }

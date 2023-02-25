@@ -16,8 +16,6 @@ export class ProductResolver {
   createProduct(
     @Args('createProductInput') createProductInput: CreateProductInput,
   ) {
-    console.log(createProductInput)
-
     this.productService.create(createProductInput)
   }
 }

@@ -25,10 +25,10 @@ export class PrismaUserRepository implements UserRepository {
     return this.prisma.user.update({ data: updateUserInput, where: { id } })
   }
 
-  updateProfilePicture(id: string, fileUrl: string): Promise<User> {
+  updateProfilePicture(id: string, fileKey: string): Promise<User> {
     return this.prisma.user.update({
       data: {
-        imageUrl: fileUrl,
+        imageKey: fileKey,
       },
       where: { id },
     })

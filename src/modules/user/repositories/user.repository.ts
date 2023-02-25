@@ -11,5 +11,5 @@ export abstract class UserRepository {
 
   abstract update(id: string, updateUserInput: UpdateUserInput): Promise<User>
 
-  abstract updateProfilePicture(id: string, fileUrl: string): Promise<User>
+  abstract updateProfilePicture(id: string, fileKey: string): Promise<User>
 }

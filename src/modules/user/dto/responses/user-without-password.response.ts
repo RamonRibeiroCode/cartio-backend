@@ -21,5 +21,8 @@ export class UserWithoutPassword {
   city?: string
 
   @Field({ nullable: true })
+  imageKey?: string
+
+  @Field({ nullable: true })
   imageUrl?: string
 }

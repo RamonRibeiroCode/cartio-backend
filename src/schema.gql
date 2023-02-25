@@ -61,7 +61,7 @@ type SigninResponse {
 input UpdateUserInput {
   address: String
   city: String
-  imageUrl: String
+  imageKey: String
   name: String
   phone: String
   state: String
@@ -74,6 +74,7 @@ type UserWithoutPassword {
   address: String
   city: String
   email: String!
+  imageKey: String
   imageUrl: String
   name: String!
   phone: String
