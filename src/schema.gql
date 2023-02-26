@@ -2,14 +2,18 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Category {
+  id: ID!
+  name: String!
+}
+
 input CreateProductInput {
   categoryId: String!
-  expiresIn: DateTime!
+  expiresIn: DateTime
   listPrice: Float!
   name: String!
   quantity: Float!
   sellingPrice: Float!
-  slug: String!
   status: String!
   validIn: DateTime!
 }
@@ -26,6 +30,7 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Mutation {
+  createCategory(name: String!): Category!
   createProduct(createProductInput: CreateProductInput!): Product!
   createUser(createUserInput: CreateUserInput!): UserWithoutPassword!
   deleteProfilePicture: UserWithoutPassword!
@@ -48,6 +53,7 @@ type Product {
 }
 
 type Query {
+  categories: [Category!]!
   profile: UserWithoutPassword!
   sayHello: String!
 }

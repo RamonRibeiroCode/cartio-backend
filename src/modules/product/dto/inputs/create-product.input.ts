@@ -6,9 +6,6 @@ export class CreateProductInput {
   name: string
 
   @Field()
-  slug: string
-
-  @Field()
   categoryId: string
 
   @Field()
@@ -20,12 +17,16 @@ export class CreateProductInput {
   @Field()
   quantity: number
 
-  @Field()
-  expiresIn: Date
+  @Field({ nullable: true })
+  expiresIn?: Date
 
   @Field()
   validIn: Date
 
   @Field()
   status: string
+}
+
+export interface CreateProductInputWithSlug extends CreateProductInput {
+  slug: string
 }

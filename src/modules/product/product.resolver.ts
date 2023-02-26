@@ -1,8 +1,9 @@
-import { Resolver, Mutation, Args } from '@nestjs/graphql'
+import { Resolver, Mutation, Args, Query } from '@nestjs/graphql'
 import { UseGuards } from '@nestjs/common'
 
 import { ProductService } from './product.service'
 import { Product } from './entities/product.entity'
+import { Category } from './entities/category.entity'
 import { JWTGuard } from '../auth/jwt.guard'
 
 import { CreateProductInput } from './dto/inputs/create-product.input'
@@ -16,6 +17,18 @@ export class ProductResolver {
   createProduct(
     @Args('createProductInput') createProductInput: CreateProductInput,
   ) {
-    this.productService.create(createProductInput)
+    return this.productService.create(createProductInput)
+  }
+
+  @Mutation(() => Category, { name: 'createCategory' })
+  @UseGuards(JWTGuard)
+  createCategory(@Args('name') name: string) {
+    return this.productService.createCategory(name)
+  }
+
+  @Query(() => [Category], { name: 'categories' })
+  @UseGuards(JWTGuard)
+  categories() {
+    return this.productService.listCategories()
   }
 }
