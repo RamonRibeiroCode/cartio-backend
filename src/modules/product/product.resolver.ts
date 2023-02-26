@@ -20,13 +20,19 @@ export class ProductResolver {
     return this.productService.create(createProductInput)
   }
 
+  @Query(() => [Product])
+  @UseGuards(JWTGuard)
+  products() {
+    return this.productService.list()
+  }
+
   @Mutation(() => Category, { name: 'createCategory' })
   @UseGuards(JWTGuard)
   createCategory(@Args('name') name: string) {
     return this.productService.createCategory(name)
   }
 
-  @Query(() => [Category], { name: 'categories' })
+  @Query(() => [Category])
   @UseGuards(JWTGuard)
   categories() {
     return this.productService.listCategories()

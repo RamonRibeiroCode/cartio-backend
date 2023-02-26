@@ -23,7 +23,7 @@ export class Product {
   @Field()
   quantity: number
 
-  @Field()
+  @Field({ nullable: true })
   expiresIn: Date
 
   @Field()

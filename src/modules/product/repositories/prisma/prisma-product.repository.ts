@@ -13,6 +13,14 @@ export class PrismaProductRepository implements ProductRepository {
     })
   }
 
+  async list() {
+    return this.prisma.product.findMany()
+  }
+
+  async findByName(name: string) {
+    return this.prisma.product.findFirst({ where: { name } })
+  }
+
   async createCategory(name: string) {
     return this.prisma.category.create({
       data: {

@@ -41,7 +41,7 @@ type Mutation {
 
 type Product {
   categoryId: String!
-  expiresIn: DateTime!
+  expiresIn: DateTime
   id: ID!
   listPrice: Float!
   name: String!
@@ -54,6 +54,7 @@ type Product {
 
 type Query {
   categories: [Category!]!
+  products: [Product!]!
   profile: UserWithoutPassword!
   sayHello: String!
 }

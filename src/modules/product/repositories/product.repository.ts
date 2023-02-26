@@ -7,6 +7,10 @@ export abstract class ProductRepository {
     createProductInput: CreateProductInputWithSlug,
   ): Promise<Product>
 
+  abstract list(): Promise<Product[]>
+
+  abstract findByName(name: string): Promise<Product>
+
   abstract createCategory(name: string): Promise<Category>
 
   abstract listCategories(): Promise<Category[]>
