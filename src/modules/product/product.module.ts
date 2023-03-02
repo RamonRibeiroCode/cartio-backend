@@ -7,9 +7,10 @@ import { JWTGuard } from '../auth/jwt.guard'
 
 import { StorageModule } from '../../shared/providers/storage/storage.module'
 import { PrismaService } from '../../shared/database/prisma.service'
+import { DateModule } from '../../shared/providers/date/date.module'
 
 @Module({
-  imports: [StorageModule],
+  imports: [StorageModule, DateModule],
   providers: [
     ProductResolver,
     ProductService,

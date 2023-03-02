@@ -1,5 +1,7 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql'
 
+type ProductStatus = 'PUBLISHED' | 'UNPUBLISHED' | 'EXPIRED' | string
+
 @ObjectType()
 export class Product {
   @Field(() => ID)
@@ -30,5 +32,5 @@ export class Product {
   validIn: Date
 
   @Field()
-  status: string
+  status: ProductStatus
 }

@@ -1,4 +1,11 @@
-import { Resolver, Mutation, Args, Query } from '@nestjs/graphql'
+import {
+  Resolver,
+  Mutation,
+  Args,
+  Query,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql'
 import { UseGuards } from '@nestjs/common'
 
 import { ProductService } from './product.service'
@@ -7,10 +14,14 @@ import { Category } from './entities/category.entity'
 import { JWTGuard } from '../auth/jwt.guard'
 
 import { CreateProductInput } from './dto/inputs/create-product.input'
+import { DateProvider } from '../../shared/providers/date/date.provider'
 
 @Resolver(() => Product)
 export class ProductResolver {
-  constructor(private readonly productService: ProductService) {}
+  constructor(
+    private readonly productService: ProductService,
+    private readonly dateProvider: DateProvider,
+  ) {}
 
   @Mutation(() => Product, { name: 'createProduct' })
   @UseGuards(JWTGuard)
@@ -36,5 +47,25 @@ export class ProductResolver {
   @UseGuards(JWTGuard)
   categories() {
     return this.productService.listCategories()
+  }
+
+  @ResolveField(() => String)
+  async status(@Parent() product: Product) {
+    const { status, validIn, expiresIn } = product
+
+    const now = this.dateProvider.dateNow()
+
+    const expired = this.dateProvider.compareIfBefore(expiresIn, now)
+    const notValidYet = this.dateProvider.compareIfBefore(now, validIn)
+
+    if (expired) {
+      return 'EXPIRED'
+    }
+
+    if (notValidYet) {
+      return 'UNPUBLISHED'
+    }
+
+    return status
   }
 }

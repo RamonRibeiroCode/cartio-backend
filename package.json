@@ -35,6 +35,7 @@
     "apollo-server-express": "^3.11.1",
     "aws-sdk": "^2.1311.0",
     "bcrypt": "^5.1.0",
+    "dayjs": "^1.10.4",
     "graphql": "^16.6.0",
     "graphql-upload-ts": "^2.0.5",
     "jsonwebtoken": "^9.0.0",
