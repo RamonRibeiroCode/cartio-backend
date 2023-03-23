@@ -40,6 +40,7 @@ type Mutation {
 }
 
 type Product {
+  category: Category!
   categoryId: String!
   expiresIn: DateTime
   id: ID!

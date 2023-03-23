@@ -59,13 +59,20 @@ export class ProductResolver {
     const notValidYet = this.dateProvider.compareIfBefore(now, validIn)
 
     if (expired) {
-      return 'EXPIRED'
+      return 'Expired'
     }
 
     if (notValidYet) {
-      return 'UNPUBLISHED'
+      return 'Unpublished'
     }
 
     return status
+  }
+
+  @ResolveField(() => Category)
+  async category(@Parent() product: Product) {
+    const { categoryId } = product
+
+    return this.productService.findCategoryById(categoryId)
   }
 }

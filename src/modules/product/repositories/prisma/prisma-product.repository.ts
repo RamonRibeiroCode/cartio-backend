@@ -36,4 +36,8 @@ export class PrismaProductRepository implements ProductRepository {
   async findCategoryByName(name: string) {
     return this.prisma.category.findFirst({ where: { name } })
   }
+
+  async findCategoryById(id: string) {
+    return this.prisma.category.findUnique({ where: { id } })
+  }
 }

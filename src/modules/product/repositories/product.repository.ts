@@ -16,4 +16,6 @@ export abstract class ProductRepository {
   abstract listCategories(): Promise<Category[]>
 
   abstract findCategoryByName(name: string): Promise<Category>
+
+  abstract findCategoryById(id: string): Promise<Category>
 }

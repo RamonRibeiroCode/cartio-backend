@@ -42,4 +42,8 @@ export class ProductService {
   async listCategories() {
     return this.productRepository.listCategories()
   }
+
+  async findCategoryById(id: string) {
+    return this.productRepository.findCategoryById(id)
+  }
 }
