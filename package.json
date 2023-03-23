@@ -23,6 +23,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.278.0",
+    "@aws-sdk/s3-request-presigner": "^3.278.0",
     "@nestjs/apollo": "^10.1.7",
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
@@ -33,11 +35,13 @@
     "apollo-server-express": "^3.11.1",
     "aws-sdk": "^2.1311.0",
     "bcrypt": "^5.1.0",
+    "dayjs": "^1.10.4",
     "graphql": "^16.6.0",
-    "graphql-upload": "^9.0.0",
+    "graphql-upload-ts": "^2.0.5",
     "jsonwebtoken": "^9.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
+    "sharp": "^0.31.3",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
@@ -46,10 +50,10 @@
     "@nestjs/testing": "^9.0.0",
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
-    "@types/graphql-upload": "^8.0.3",
     "@types/jest": "29.2.4",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "18.11.18",
+    "@types/sharp": "^0.31.1",
     "@types/supertest": "^2.0.11",
     "@types/uuid": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
@@ -75,6 +79,9 @@
       "ts"
     ],
     "rootDir": "src",
+    "moduleNameMapper": {
+      "^src/(.*)$": "<rootDir>/$1"
+    },
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"

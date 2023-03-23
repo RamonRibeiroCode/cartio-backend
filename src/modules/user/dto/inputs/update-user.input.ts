@@ -18,5 +18,5 @@ export class UpdateUserInput {
   city?: string
 
   @Field({ nullable: true })
-  imageUrl?: string
+  imageKey?: string
 }

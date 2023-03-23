@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { PrismaService } from '../../../../shared/database/prisma.service'
+import { PrismaService } from 'src/shared/database/prisma.service'
 import { CreateUserInput } from '../../dto/inputs/create-user.input'
 import { UpdateUserInput } from '../../dto/inputs/update-user.input'
 import { User } from '../../entities/user.entity'
@@ -25,10 +25,10 @@ export class PrismaUserRepository implements UserRepository {
     return this.prisma.user.update({ data: updateUserInput, where: { id } })
   }
 
-  updateProfilePicture(id: string, fileUrl: string): Promise<User> {
+  updateProfilePicture(id: string, fileKey: string): Promise<User> {
     return this.prisma.user.update({
       data: {
-        imageUrl: fileUrl,
+        imageKey: fileKey,
       },
       where: { id },
     })

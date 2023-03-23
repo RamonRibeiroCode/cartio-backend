@@ -2,13 +2,36 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Category {
+  id: ID!
+  name: String!
+}
+
+input CreateProductInput {
+  categoryId: String!
+  expiresIn: DateTime
+  listPrice: Float!
+  name: String!
+  quantity: Float!
+  sellingPrice: Float!
+  status: String!
+  validIn: DateTime!
+}
+
 input CreateUserInput {
   email: String!
   name: String!
   password: String!
 }
 
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Mutation {
+  createCategory(name: String!): Category!
+  createProduct(createProductInput: CreateProductInput!): Product!
   createUser(createUserInput: CreateUserInput!): UserWithoutPassword!
   deleteProfilePicture: UserWithoutPassword!
   signin(email: String!, password: String!): SigninResponse!
@@ -16,7 +39,23 @@ type Mutation {
   updateUser(updateUserInput: UpdateUserInput!): UserWithoutPassword!
 }
 
+type Product {
+  category: Category!
+  categoryId: String!
+  expiresIn: DateTime
+  id: ID!
+  listPrice: Float!
+  name: String!
+  quantity: Float!
+  sellingPrice: Float!
+  slug: String!
+  status: String!
+  validIn: DateTime!
+}
+
 type Query {
+  categories: [Category!]!
+  products: [Product!]!
   profile: UserWithoutPassword!
   sayHello: String!
 }
@@ -30,7 +69,7 @@ type SigninResponse {
 input UpdateUserInput {
   address: String
   city: String
-  imageUrl: String
+  imageKey: String
   name: String
   phone: String
   state: String
@@ -43,6 +82,7 @@ type UserWithoutPassword {
   address: String
   city: String
   email: String!
+  imageKey: String
   imageUrl: String
   name: String!
   phone: String

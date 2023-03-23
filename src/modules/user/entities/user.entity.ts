@@ -27,5 +27,5 @@ export class User {
   city?: string
 
   @Field({ nullable: true })
-  imageUrl?: string
+  imageKey?: string
 }

@@ -1,10 +1,17 @@
-import { Resolver, Mutation, Args, Context, Query } from '@nestjs/graphql'
+import {
+  Resolver,
+  Mutation,
+  Args,
+  Context,
+  Query,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql'
 import { UseGuards } from '@nestjs/common'
 
-import { GraphQLUpload, FileUpload } from 'graphql-upload'
+import { GraphQLUpload, FileUpload } from 'graphql-upload-ts'
 
 import { UserService } from './user.service'
-import { User } from './entities/user.entity'
 import { JWTGuard } from '../auth/jwt.guard'
 
 import { CreateUserInput } from './dto/inputs/create-user.input'
@@ -12,15 +19,19 @@ import { UserWithoutPassword } from './dto/responses/user-without-password.respo
 import { UpdateUserInput } from './dto/inputs/update-user.input'
 
 import { USER_CONTEXT } from '../../constants/contexts'
+import { StorageProvider } from '../../shared/providers/storage/storage.provider'
 
 interface UserContext {
   id: string
   email: string
 }
 
-@Resolver(() => User)
+@Resolver(() => UserWithoutPassword)
 export class UserResolver {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly storageProvider: StorageProvider,
+  ) {}
 
   @Mutation(() => UserWithoutPassword, { name: 'createUser' })
   createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
@@ -29,8 +40,10 @@ export class UserResolver {
 
   @Query(() => UserWithoutPassword, { name: 'profile' })
   @UseGuards(JWTGuard)
-  profile(@Context(USER_CONTEXT) user: UserContext) {
-    return this.userService.findByEmail(user.email)
+  async profile(@Context(USER_CONTEXT) user: UserContext) {
+    const profile = await this.userService.findByEmail(user.email)
+
+    return profile
   }
 
   @Mutation(() => UserWithoutPassword, { name: 'updateUser' })
@@ -55,5 +68,16 @@ export class UserResolver {
   @UseGuards(JWTGuard)
   async deleteProfilePicture(@Context(USER_CONTEXT) user: UserContext) {
     return this.userService.deleteProfilePicture(user.id)
+  }
+
+  @ResolveField(() => String)
+  async imageUrl(@Parent() userWithoutPassword: UserWithoutPassword) {
+    const { imageKey } = userWithoutPassword
+
+    if (!imageKey) {
+      return null
+    }
+
+    return await this.storageProvider.getSignedUrl(imageKey)
   }
 }
