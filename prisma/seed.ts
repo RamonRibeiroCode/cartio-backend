@@ -3,6 +3,14 @@ import { hash } from 'bcrypt'
 const prisma = new PrismaClient()
 
 async function main() {
+  const alreadyHasUser = await prisma.user.findUnique({
+    where: { email: 'user@cartio.com' },
+  })
+
+  if (alreadyHasUser) {
+    return
+  }
+
   const passwordHash = await hash('cartio', 8)
 
   await prisma.user.create({
