@@ -46,10 +46,10 @@ type Product {
   description: String
   expiresIn: DateTime
   id: ID!
-  listPrice: Float!
+  listPrice: Float
   name: String!
-  quantity: Float!
-  sellingPrice: Float!
+  quantity: Float
+  sellingPrice: Float
   slug: String!
   status: String!
   validIn: DateTime

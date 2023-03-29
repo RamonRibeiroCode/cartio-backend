@@ -16,14 +16,14 @@ export class Product {
   @Field()
   categoryId: string
 
-  @Field()
-  listPrice: number
+  @Field({ nullable: true })
+  listPrice?: number
 
-  @Field()
-  sellingPrice: number
+  @Field({ nullable: true })
+  sellingPrice?: number
 
-  @Field()
-  quantity: number
+  @Field({ nullable: true })
+  quantity?: number
 
   @Field({ nullable: true })
   description?: string

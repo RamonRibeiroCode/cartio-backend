@@ -27,9 +27,9 @@ model Product {
   images       String[]
   category     Category @relation(fields: [categoryId], references: [id])
   categoryId   String
-  listPrice    Float
-  sellingPrice Float
-  quantity     Int
+  listPrice    Float?
+  sellingPrice Float?
+  quantity     Int?
   description  String?
   expiresIn    DateTime?
   validIn      DateTime?
