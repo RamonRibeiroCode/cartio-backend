@@ -55,8 +55,10 @@ export class ProductResolver {
 
     const now = this.dateProvider.dateNow()
 
-    const expired = this.dateProvider.compareIfBefore(expiresIn, now)
-    const notValidYet = this.dateProvider.compareIfBefore(now, validIn)
+    const expired =
+      expiresIn && this.dateProvider.compareIfBefore(expiresIn, now)
+    const notValidYet =
+      validIn && this.dateProvider.compareIfBefore(now, validIn)
 
     if (expired) {
       return 'Expired'

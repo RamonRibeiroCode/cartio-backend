@@ -26,10 +26,13 @@ export class Product {
   quantity: number
 
   @Field({ nullable: true })
-  expiresIn: Date
+  description?: string
 
-  @Field()
-  validIn: Date
+  @Field({ nullable: true })
+  expiresIn?: Date
+
+  @Field({ nullable: true })
+  validIn?: Date
 
   @Field()
   status: ProductStatus
