@@ -1,4 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql'
+import { FileUpload, GraphQLUpload } from 'graphql-upload-ts'
 
 @InputType()
 export class CreateProductInput {
@@ -26,10 +27,15 @@ export class CreateProductInput {
   @Field({ nullable: true })
   description?: string
 
+  @Field(() => GraphQLUpload, { nullable: true })
+  mainImage?: FileUpload
+
   @Field()
   status: string
 }
 
-export interface CreateProductInputWithSlug extends CreateProductInput {
+export interface CreateProductInputWithSlug
+  extends Omit<CreateProductInput, 'mainImage'> {
   slug: string
+  mainImageKey: string
 }

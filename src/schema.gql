@@ -12,6 +12,7 @@ input CreateProductInput {
   description: String
   expiresIn: DateTime
   listPrice: Float
+  mainImage: Upload
   name: String!
   quantity: Float
   sellingPrice: Float
@@ -47,6 +48,8 @@ type Product {
   expiresIn: DateTime
   id: ID!
   listPrice: Float
+  mainImageKey: String
+  mainImageUrl: String
   name: String!
   quantity: Float
   sellingPrice: Float

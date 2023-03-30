@@ -29,6 +29,9 @@ export class Product {
   description?: string
 
   @Field({ nullable: true })
+  mainImageKey?: string
+
+  @Field({ nullable: true })
   expiresIn?: Date
 
   @Field({ nullable: true })

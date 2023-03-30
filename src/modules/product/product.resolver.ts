@@ -15,12 +15,14 @@ import { JWTGuard } from '../auth/jwt.guard'
 
 import { CreateProductInput } from './dto/inputs/create-product.input'
 import { DateProvider } from '../../shared/providers/date/date.provider'
+import { StorageProvider } from '../../shared/providers/storage/storage.provider'
 
 @Resolver(() => Product)
 export class ProductResolver {
   constructor(
     private readonly productService: ProductService,
     private readonly dateProvider: DateProvider,
+    private readonly storageProvider: StorageProvider,
   ) {}
 
   @Mutation(() => Product, { name: 'createProduct' })
@@ -76,5 +78,16 @@ export class ProductResolver {
     const { categoryId } = product
 
     return this.productService.findCategoryById(categoryId)
+  }
+
+  @ResolveField(() => String, { nullable: true })
+  async mainImageUrl(@Parent() product: Product) {
+    const { mainImageKey } = product
+
+    if (mainImageKey) {
+      return this.storageProvider.getSignedUrl(mainImageKey)
+    }
+
+    return null
   }
 }
