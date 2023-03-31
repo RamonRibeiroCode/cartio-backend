@@ -7,37 +7,39 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id           String @id @default(uuid())
-  name         String
-  email        String @unique
-  password     String
-  phone        String?
-  address      String?
-  state        String?
-  city         String?
-  imageKey     String?
-  createdAt    DateTime @default(now())
+model User { 
+  id            String @id @default(uuid())
+  name          String
+  email         String @unique
+  password      String
+  phone         String?
+  address       String?
+  state         String?
+  city          String?
+  imageKey      String?
+  createdAt     DateTime @default(now())
 }
 
 model Product {
-  id           String @id @default(uuid())
-  name         String 
-  slug         String
-  images       String[]
-  category     Category @relation(fields: [categoryId], references: [id])
-  categoryId   String
-  listPrice    Float
-  sellingPrice Float
-  quantity     Int
-  expiresIn    DateTime?
-  validIn      DateTime?
-  status       String
-  createdAt    DateTime @default(now())
+  id            String @id @default(uuid())
+  name          String
+  slug          String
+  mainImageKey  String?
+  imagesKeys    String[]
+  category      Category @relation(fields: [categoryId], references: [id])
+  categoryId    String
+  listPrice     Float?
+  sellingPrice  Float?
+  quantity      Int?
+  description   String?
+  expiresIn     DateTime?
+  validIn       DateTime?
+  status        String
+  createdAt     DateTime @default(now())
 }
 
 model Category {
-  id           String @id @default(uuid())
-  name         String
-  product      Product[]    
+  id            String @id @default(uuid())
+  name          String
+  product       Product[]    
 }

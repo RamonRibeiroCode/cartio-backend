@@ -16,20 +16,26 @@ export class Product {
   @Field()
   categoryId: string
 
-  @Field()
-  listPrice: number
-
-  @Field()
-  sellingPrice: number
-
-  @Field()
-  quantity: number
+  @Field({ nullable: true })
+  listPrice?: number
 
   @Field({ nullable: true })
-  expiresIn: Date
+  sellingPrice?: number
 
-  @Field()
-  validIn: Date
+  @Field({ nullable: true })
+  quantity?: number
+
+  @Field({ nullable: true })
+  description?: string
+
+  @Field({ nullable: true })
+  mainImageKey?: string
+
+  @Field({ nullable: true })
+  expiresIn?: Date
+
+  @Field({ nullable: true })
+  validIn?: Date
 
   @Field()
   status: ProductStatus

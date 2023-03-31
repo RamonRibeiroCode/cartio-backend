@@ -8,14 +8,16 @@ type Category {
 }
 
 input CreateProductInput {
-  categoryId: String!
+  categoryId: String
+  description: String
   expiresIn: DateTime
-  listPrice: Float!
+  listPrice: Float
+  mainImage: Upload
   name: String!
-  quantity: Float!
-  sellingPrice: Float!
+  quantity: Float
+  sellingPrice: Float
   status: String!
-  validIn: DateTime!
+  validIn: DateTime
 }
 
 input CreateUserInput {
@@ -42,15 +44,18 @@ type Mutation {
 type Product {
   category: Category!
   categoryId: String!
+  description: String
   expiresIn: DateTime
   id: ID!
-  listPrice: Float!
+  listPrice: Float
+  mainImageKey: String
+  mainImageUrl: String
   name: String!
-  quantity: Float!
-  sellingPrice: Float!
+  quantity: Float
+  sellingPrice: Float
   slug: String!
   status: String!
-  validIn: DateTime!
+  validIn: DateTime
 }
 
 type Query {
