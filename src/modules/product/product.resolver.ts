@@ -90,4 +90,17 @@ export class ProductResolver {
 
     return null
   }
+
+  @ResolveField(() => [String])
+  async additionalImageUrls(@Parent() product: Product) {
+    const { imagesKeys } = product
+
+    if (imagesKeys) {
+      return imagesKeys.map((imageKey) =>
+        this.storageProvider.getSignedUrl(imageKey),
+      )
+    }
+
+    return []
+  }
 }

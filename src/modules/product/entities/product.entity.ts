@@ -31,6 +31,9 @@ export class Product {
   @Field({ nullable: true })
   mainImageKey?: string
 
+  @Field(() => [String])
+  imagesKeys?: string[]
+
   @Field({ nullable: true })
   expiresIn?: Date
 

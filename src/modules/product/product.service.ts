@@ -23,7 +23,8 @@ export class ProductService {
       throw new ValidationError('Product already exists')
     }
 
-    const { mainImage, ...createProductInfos } = createProductInput
+    const { mainImage, additionalImages, ...createProductInfos } =
+      createProductInput
 
     let fileKey: string
 
@@ -31,12 +32,25 @@ export class ProductService {
       fileKey = await this.storageProvider.upload(await mainImage)
     }
 
+    const additionalFiles = await Promise.all(additionalImages)
+
+    const additionalFileKeys = await Promise.all(
+      additionalFiles.map(async (additionalImage) => {
+        const additionalFileKey = await this.storageProvider.upload(
+          additionalImage,
+        )
+
+        return additionalFileKey
+      }),
+    )
+
     const slug = slugify(createProductInput.name)
 
     return this.productRepository.create({
       ...createProductInfos,
       slug,
       mainImageKey: fileKey,
+      imagesKeys: additionalFileKeys,
     })
   }
 

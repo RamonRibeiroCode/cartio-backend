@@ -28,14 +28,18 @@ export class CreateProductInput {
   description?: string
 
   @Field(() => GraphQLUpload, { nullable: true })
-  mainImage?: FileUpload
+  mainImage?: Promise<FileUpload>
+
+  @Field(() => [GraphQLUpload], { nullable: true })
+  additionalImages?: Promise<FileUpload>[]
 
   @Field()
   status: string
 }
 
 export interface CreateProductInputWithSlug
-  extends Omit<CreateProductInput, 'mainImage'> {
+  extends Omit<CreateProductInput, 'mainImage' | 'additionalImages'> {
   slug: string
   mainImageKey: string
+  imagesKeys: string[]
 }

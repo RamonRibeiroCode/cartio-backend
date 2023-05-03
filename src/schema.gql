@@ -8,6 +8,7 @@ type Category {
 }
 
 input CreateProductInput {
+  additionalImages: [Upload!]
   categoryId: String
   description: String
   expiresIn: DateTime
@@ -42,11 +43,13 @@ type Mutation {
 }
 
 type Product {
+  additionalImageUrls: [String!]!
   category: Category!
   categoryId: String!
   description: String
   expiresIn: DateTime
   id: ID!
+  imagesKeys: [String!]!
   listPrice: Float
   mainImageKey: String
   mainImageUrl: String
