@@ -16,6 +16,7 @@ import { JWTGuard } from '../auth/jwt.guard'
 import { CreateProductInput } from './dto/inputs/create-product.input'
 import { DateProvider } from '../../shared/providers/date/date.provider'
 import { StorageProvider } from '../../shared/providers/storage/storage.provider'
+import { UpdateProductInput } from './dto/inputs/update-product.input'
 
 @Resolver(() => Product)
 export class ProductResolver {
@@ -25,7 +26,7 @@ export class ProductResolver {
     private readonly storageProvider: StorageProvider,
   ) {}
 
-  @Mutation(() => Product, { name: 'createProduct' })
+  @Mutation(() => Product)
   @UseGuards(JWTGuard)
   createProduct(
     @Args('createProductInput') createProductInput: CreateProductInput,
@@ -33,10 +34,25 @@ export class ProductResolver {
     return this.productService.create(createProductInput)
   }
 
+  @Mutation(() => Product)
+  @UseGuards(JWTGuard)
+  updateProduct(
+    @Args('id') id: string,
+    @Args('updateProductInput') updateProductInput: UpdateProductInput,
+  ) {
+    return this.productService.update(id, updateProductInput)
+  }
+
   @Query(() => [Product])
   @UseGuards(JWTGuard)
   products() {
     return this.productService.list()
+  }
+
+  @Query(() => Product)
+  @UseGuards(JWTGuard)
+  product(@Args('id') id: string) {
+    return this.productService.findById(id)
   }
 
   @Mutation(() => Category, { name: 'createCategory' })

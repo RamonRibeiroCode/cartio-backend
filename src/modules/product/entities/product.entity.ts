@@ -42,4 +42,7 @@ export class Product {
 
   @Field()
   status: ProductStatus
+
+  @Field()
+  createdAt: Date
 }

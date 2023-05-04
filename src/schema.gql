@@ -38,6 +38,7 @@ type Mutation {
   createUser(createUserInput: CreateUserInput!): UserWithoutPassword!
   deleteProfilePicture: UserWithoutPassword!
   signin(email: String!, password: String!): SigninResponse!
+  updateProduct(id: String!, updateProductInput: UpdateProductInput!): Product!
   updateProfilePicture(file: Upload!): UserWithoutPassword!
   updateUser(updateUserInput: UpdateUserInput!): UserWithoutPassword!
 }
@@ -46,6 +47,7 @@ type Product {
   additionalImageUrls: [String!]!
   category: Category!
   categoryId: String!
+  createdAt: DateTime!
   description: String
   expiresIn: DateTime
   id: ID!
@@ -63,6 +65,7 @@ type Product {
 
 type Query {
   categories: [Category!]!
+  product(id: String!): Product!
   products: [Product!]!
   profile: UserWithoutPassword!
   sayHello: String!
@@ -72,6 +75,18 @@ type SigninResponse {
   email: String!
   name: String!
   token: String!
+}
+
+input UpdateProductInput {
+  categoryId: String
+  description: String
+  expiresIn: DateTime
+  listPrice: Float
+  name: String!
+  quantity: Float
+  sellingPrice: Float
+  status: String!
+  validIn: DateTime
 }
 
 input UpdateUserInput {

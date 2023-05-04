@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { PrismaService } from 'src/shared/database/prisma.service'
 import { CreateProductInputWithSlug } from '../../dto/inputs/create-product.input'
 import { ProductRepository } from '../product.repository'
+import { UpdateProductInputWithSlug } from '../../dto/inputs/update-product.input'
 
 @Injectable()
 export class PrismaProductRepository implements ProductRepository {
@@ -13,8 +14,25 @@ export class PrismaProductRepository implements ProductRepository {
     })
   }
 
+  async update(id: string, updateProductInput: UpdateProductInputWithSlug) {
+    return this.prisma.product.update({
+      data: updateProductInput,
+      where: {
+        id,
+      },
+    })
+  }
+
   async list() {
     return this.prisma.product.findMany()
+  }
+
+  async findById(id: string) {
+    return this.prisma.product.findUnique({
+      where: {
+        id,
+      },
+    })
   }
 
   async findByName(name: string) {
