@@ -55,7 +55,7 @@ export class ProductResolver {
     return this.productService.findById(id)
   }
 
-  @Mutation(() => Category, { name: 'createCategory' })
+  @Mutation(() => Category)
   @UseGuards(JWTGuard)
   createCategory(@Args('name') name: string) {
     return this.productService.createCategory(name)

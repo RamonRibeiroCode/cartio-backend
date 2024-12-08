@@ -7,6 +7,7 @@ import { join } from 'path'
 import { AppResolver } from './app.resolver'
 import { AuthModule } from 'src/modules/auth/auth.module'
 import { ProductModule } from 'src/modules/product/product.module'
+import { OrderModule } from 'src/modules/orders/order.module'
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ProductModule } from 'src/modules/product/product.module'
     AuthModule,
     ProductModule,
     UserModule,
+    OrderModule,
   ],
   providers: [AppResolver],
 })

@@ -34,6 +34,7 @@ scalar DateTime
 
 type Mutation {
   createCategory(name: String!): Category!
+  createPaymentIntent: String!
   createProduct(createProductInput: CreateProductInput!): Product!
   createUser(createUserInput: CreateUserInput!): UserWithoutPassword!
   deleteProfilePicture: UserWithoutPassword!
